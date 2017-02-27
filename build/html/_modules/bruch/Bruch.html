@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>bruch.Bruch &#8212; TDDWithPython2 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="TDDWithPython2 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for bruch.Bruch</h1><div class="highlight"><pre>
+<span></span>
+<div class="viewcode-block" id="Bruch"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch">[docs]</a><span class="k">class</span> <span class="nc">Bruch</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Diese Klasse berechnet sich Brüche mit unterschiedlichsten Operatoren wie Division oder Addition.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Bruch.__init__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">zaehler</span><span class="p">,</span><span class="n">nenner</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Der Konstruktor von Bruch. Floats werden hier noch nicht erlaubt da dies (und andere types)</span>
+<span class="sd">        in den folgenden Operatoren behandelt wird.</span>
+<span class="sd">        :param zaehler: Der Zaehler des Bruches</span>
+<span class="sd">        :param nenner: Der Nenner des Buches</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span> <span class="o">=</span> <span class="n">zaehler</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nenner</span> <span class="o">=</span> <span class="n">nenner</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nenner</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ZeroDivisionError</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span></div>
+
+<div class="viewcode-block" id="Bruch.__float__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__float__">[docs]</a>    <span class="k">def</span> <span class="nf">__float__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dividiert Zaehler und Nenner und gibt das Ergebnis als float aus.</span>
+<span class="sd">        :return: Gibt eine Gleitkommazahl zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ergebnis</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">ergebnis</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__int__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__int__">[docs]</a>    <span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dividiert Zaehler und Nenner und gibt das Ergebnis als int aus.</span>
+<span class="sd">        :return: Gibt ein Ganzzahliges Ergebnis zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ergebnis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nenner</span>
+        <span class="k">return</span> <span class="nb">int</span> <span class="p">(</span><span class="n">ergebnis</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__complex__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__complex__">[docs]</a>    <span class="k">def</span> <span class="nf">__complex__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dividiert Zaehler und Nenner und gibt das Ergebnis als complex aus.</span>
+<span class="sd">        :return: Gibt eine Gleitkommazahl aus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ergebnis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nenner</span>
+        <span class="k">return</span> <span class="nb">complex</span><span class="p">(</span><span class="n">ergebnis</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__invert__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__invert__">[docs]</a>    <span class="k">def</span> <span class="nf">__invert__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt Zaehler und Nenner und vertauscht sie.</span>
+<span class="sd">        :return: Gibt den Bruch invertiert zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Bruch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__abs__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__abs__">[docs]</a>    <span class="k">def</span> <span class="nf">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt einen Bruch entgegen (egal ob positiv oder negativ) und gibt ihn als positiven Bruch zurück.</span>
+<span class="sd">        :return: Gibt einen positiven Bruch zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Bruch</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Bruch.__neg__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__neg__">[docs]</a>    <span class="k">def</span> <span class="nf">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt einen Bruch entgegen und gibt ihn als negativen Bruch zurück</span>
+<span class="sd">        :return: Gibt einen negativen Bruch zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Bruch</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__pow__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__pow__">[docs]</a>    <span class="k">def</span> <span class="nf">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">modulo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt einen Bruch und eine Hochzahl entgegen und berechnet sich diesen Bruch.</span>
+<span class="sd">        :param power: Wie oft die Zahl mit sich selbst multipliziert werden soll</span>
+<span class="sd">        :param modulo: Keine</span>
+<span class="sd">        :return: Gibt den Bruch^power zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">power</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span>
+        <span class="k">return</span> <span class="n">Bruch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span> <span class="o">**</span> <span class="n">power</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nenner</span> <span class="o">**</span> <span class="n">power</span><span class="p">)</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__makeBruch</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt einen Wert entgegen und wandelt diesen Wert in einen Bruch um.</span>
+<span class="sd">        :param value: Der Wert der in einen Bruch umgewandelt werden soll</span>
+<span class="sd">        :return: Gibt einen Bruch mit dem value als Zaehler zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Bruch</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span>
+
+<div class="viewcode-block" id="Bruch.__eq__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft ob beide Brüche gleich sind</span>
+<span class="sd">        :param other: Der Bruch mit dem verglichen werden soll</span>
+<span class="sd">        :return: Gibt True zurück wenn beide Brüche gleich sind und False falls sie nicht übereinstimmen</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__str__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wandelt einen int/float Bruch in einen String um.</span>
+<span class="sd">        :return: Gibt einen String mit dem Bruch zurück &quot;(Zeahler/Nenner)&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;(&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">nenner</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;(&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;(&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span></div>
+
+<div class="viewcode-block" id="Bruch.__add__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__add__">[docs]</a>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt zwei Brüche entgegen und addiert diese</span>
+<span class="sd">        :param other: Der Bruch mit dem addiert werden soll.</span>
+<span class="sd">        :return: Gibt den addierten Bruch zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="n">Bruch</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Bruch</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">nenner</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">zaehler</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">),(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">nenner</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Bruch</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="o">+</span><span class="n">other</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span></div>
+
+<div class="viewcode-block" id="Bruch.__iadd__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__iadd__">[docs]</a>    <span class="k">def</span> <span class="nf">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inkrementale addition für Brüche: +=</span>
+<span class="sd">        :param other: Siehe __add__()</span>
+<span class="sd">        :return: Rückgabe von __add__()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__radd__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__radd__">[docs]</a>    <span class="k">def</span> <span class="nf">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        int + Bruch</span>
+<span class="sd">        :param other: Siehe __add__()</span>
+<span class="sd">        :return: Rückgabe von __add__()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__sub__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__sub__">[docs]</a>    <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt zwei Brüche entgegen und subtrahiert diese</span>
+<span class="sd">        :param other: Der Bruch der subtrahiert werden soll</span>
+<span class="sd">        :return: Gibt die Differenz der beiden Brüche zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="n">Bruch</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Bruch</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">nenner</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">zaehler</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">),(</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">nenner</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Bruch</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="o">-</span><span class="n">other</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span></div>
+
+<div class="viewcode-block" id="Bruch.__isub__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__isub__">[docs]</a>    <span class="k">def</span> <span class="nf">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inkrementele Subtraktion von Brüchen</span>
+<span class="sd">        :param other: Siehe __sub__()</span>
+<span class="sd">        :return: Rückgabe von __sub__()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sub__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__rsub__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__rsub__">[docs]</a>    <span class="k">def</span> <span class="nf">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        int - Bruch</span>
+<span class="sd">        :param other:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">other</span><span class="o">=</span> <span class="n">Bruch</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__truediv__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__truediv__">[docs]</a>    <span class="k">def</span> <span class="nf">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt wei Brüche entgegen und dividiert diese</span>
+<span class="sd">        :param other: Der zweite Bruch mit dem dividiert wird</span>
+<span class="sd">        :return: Gibt das Ergebnis der Dvision der beiden Brüche zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ZeroDivisionError</span>
+            <span class="n">ergebnis</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">other</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">ergebnis</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="n">Bruch</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="o">~</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span></div>
+
+<div class="viewcode-block" id="Bruch.__itruediv__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__itruediv__">[docs]</a>    <span class="k">def</span> <span class="nf">__itruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inkrementele division von Brüchen</span>
+<span class="sd">        :param other: Siehe __truediv__()</span>
+<span class="sd">        :return: Rückgabe von __truediv()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__truediv__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__rtruediv__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__rtruediv__">[docs]</a>    <span class="k">def</span> <span class="nf">__rtruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        int / Bruch</span>
+<span class="sd">        :param other: Siehe __truediv()</span>
+<span class="sd">        :return: Rückgabe von __truediv()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__truediv__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__mul__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__mul__">[docs]</a>    <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nimmt zwei Brüche entgegen und multipliziert diese miteinander</span>
+<span class="sd">        :param other: Der zweite Bruch mit dem multipliziert werden soll</span>
+<span class="sd">        :return: Gibt das Ergebnis der Multiplikation der beiden Brüche zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ZeroDivisionError</span>
+            <span class="n">ergebnis</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">ergebnis</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="n">Bruch</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span></div>
+
+<div class="viewcode-block" id="Bruch.__imul__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__imul__">[docs]</a>    <span class="k">def</span> <span class="nf">__imul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inkrementele multiplikation von Brüchen</span>
+<span class="sd">        :param other: Siehe __mul__()</span>
+<span class="sd">        :return: Rückgabe von __mul__()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__rmul__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__rmul__">[docs]</a>    <span class="k">def</span> <span class="nf">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        int * Bruch</span>
+<span class="sd">        :param other: Siehe __mul__()</span>
+<span class="sd">        :return: Rückgabe von __mul__()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__ge__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__ge__">[docs]</a>    <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft ob ein Bruch &gt;= ein anderer Bruch ist.</span>
+<span class="sd">        :param other: Der zweite Bruch</span>
+<span class="sd">        :return: Gibt True,wenn der Bruch größer oder gleich ist, oder False zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">&gt;=</span><span class="nb">float</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__gt__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__gt__">[docs]</a>    <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft ob ein Bruch &gt; als ein andere Bruch ist</span>
+<span class="sd">        :param other: Der zweite Bruch</span>
+<span class="sd">        :return: Gibt True,wenn der Bruch größer ist, oder False zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">float</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__le__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__le__">[docs]</a>    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft ob ein Bruch &lt;= einen anderen Bruch ist</span>
+<span class="sd">        :param other: Der zweite Bruch</span>
+<span class="sd">        :return: Gibt True,wenn der Bruch kleiner oder gleich ist, oder False zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">&lt;=</span><span class="nb">float</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__lt__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__lt__">[docs]</a>    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft ob ein Bruch &lt; als ein anderer Bruch ist</span>
+<span class="sd">        :param other: Der zweite Bruch</span>
+<span class="sd">        :return: Gibt True,wenn der Bruch kleiner ist, oder False zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">&lt;</span><span class="nb">float</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bruch.__iter__"><a class="viewcode-back" href="../../bruch.html#bruch.Bruch.Bruch.__iter__">[docs]</a>    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iteriert durch den Bruch</span>
+<span class="sd">        :return:Iterator von tuple: (Zaehler, Nenner)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zaehler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nenner</span><span class="p">)</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Lukas Radosztics.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
